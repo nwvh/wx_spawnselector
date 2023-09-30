@@ -3,8 +3,8 @@ local opt = {
         title = wx.LastLocation.Title,
         icon = wx.LastLocation.Icon,
         onSelect = function ()
-            SetEntityCoords(PlayerPedId(),GetEntityCoords(PlayerPedId()))
-            SwitchInPlayer(PlayerPedId())
+            SetEntityCoords(cache.ped,GetEntityCoords(cache.ped))
+            SwitchInPlayer(cache.ped)
         end
     }
 }
@@ -28,8 +28,8 @@ for k,v in pairs(wx.Locations) do
             description = v.Description,
             disabled = not CanChooseSpawn(v.Spawn),
             onSelect = function ()
-                SetEntityCoords(PlayerPedId(),v.Spawn)
-                SwitchInPlayer(PlayerPedId())
+                SetEntityCoords(cache.ped,v.Spawn)
+                SwitchInPlayer(cache.ped)
             end
         }
     )
@@ -43,7 +43,7 @@ lib.registerContext({
 })
 
 exports('chooseSpawn',function ()
-    SwitchOutPlayer(PlayerPedId(), 0, 1)
+    SwitchOutPlayer(cache.ped, 0, 1)
     lib.showContext('spawnselector')
 end)
 
